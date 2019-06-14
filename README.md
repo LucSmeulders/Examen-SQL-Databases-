@@ -10,6 +10,8 @@ WHERE persoontaal = 'F'
 AND persoon_naam LIKE 'M'
 
 
+
+
 2 Geef de referenties en de namen van de personen, gesorteerd volgens het referentienummer van hoog naar laag. Gebruik bij het sorteren een nummer in plaats van een kolomnaam.
 
 SELECT persoon_id, persoon_naam
