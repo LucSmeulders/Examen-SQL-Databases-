@@ -6,15 +6,15 @@ Examen SQL Databases
 
 SELECT persoon_naam 
 FROM persoon
-WHERE persoontaal = 'F'
-AND persoon_naam LIKE 'M'
+WHERE persoon_taal = 'F'
+AND persoon_naam LIKE 'M%'
 
 
 2 Geef de referenties en de namen van de personen, gesorteerd volgens het referentienummer van hoog naar laag. Gebruik bij het sorteren een nummer in plaats van een kolomnaam.
 
 SELECT persoon_id, persoon_naam
 FROM persoon
-ORDER BY  1?? DESC
+ORDER BY  1 DESC
 
 
 3 Geef de productcode en het productnummer van de producten waarbij een locatie is ingevuld.
@@ -85,7 +85,7 @@ WHERE oorsprong_nr IS NULL
 
 10 Geef de productcode, het productnummer en de naam van de locatie. In de gevallen dat de naam van de locatie niet is ingevuld, moet er in die plaats geen worden vermeld.
 
-SELECT product.product_code, product.product_nr, NVL(locatie.locatie_naam, 'geen')
+SELECT product.product_code, product.product_nr, coalesce(locatie.locatie_naam, 'geen')
 FROM product LEFT OUTER JOIN locatie
 ON (product.locatie_nr = locatie.locatie_id)
 
@@ -94,7 +94,7 @@ ON (product.locatie_nr = locatie.locatie_id)
 
 SELECT locatie_naam
 FROM locatie
-WHERE LEN(locatie_naam) = 16
+WHERE LENGTH(locatie_naam) = 16
 AND locatie_naam LIKE '%Magazijn%'
 
 
@@ -110,7 +110,7 @@ AND product_nr < 15
 
 SELECT product.product_code, product.product_nr
 FROM product
-WHERE EXIST 	(SELECT locatie.locatie_naam
+WHERE EXISTS 	(SELECT locatie.locatie_naam
 		FROM locatie 
 		WHERE locatie.locatie_id = product.locatie_nr
 		AND LOWER(locatie.locatie_naam) LIKE 'maga%')
