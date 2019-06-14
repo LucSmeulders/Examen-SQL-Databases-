@@ -63,12 +63,37 @@ WHERE oorsprong_nr IS NULL
 
 10 Geef de productcode, het productnummer en de naam van de locatie. In de gevallen dat de naam van de locatie niet is ingevuld, moet er in die plaats geen worden vermeld.
 
+SELECTpr.product_code, pr.product_nr, NVL(lo.locatie_naam, 'geen')
+FROM product pr LEFT OUTER JOIN locatie lo
+ON (pr.locatie_nr = lo.locatie_id)
+
+
 11 geef de namen van de locaties waarvan de naam uit 16 letters bestaat, maar waarin het woord 'Magazijn' voorkomt.
+
+SELECT locatie_naam
+FROM locatie
+WHERE LEN(locatie_naam) = 16
+AND locatie_naam LIKE '%Magazijn%'
 
 12 Geef de productcode en het productnummer van de producten met productcode 'HA' of 'NE' maar waarvan het productnummer kleiner is dan 15.
 
+SELECT pr.product_code, pr.product_nr
+FROM pruct pr
+WHERE EXIST 	(SELECT lo.locatie_naam
+		FROM locatie lo
+		WHERE lo.locatie_id = pr.locatie_nr
+		AND LOWER(lo.locatie_naam) LIKE 'maga%')
+    
+    
 13 Geef de productcode en het nummer van die producten waarbij de naam van de locatie begint met 'maga'. Maak gebruik van de principes van Subquery.
 
 14 Verhuis alle producten van magazijn 1 naar magazijn 2.
 
+UPDATE product
+SET locatie_nr = 3
+WHERE locatie_nr = 1
+
 15 Verwijder alle producten van Millie.
+
+DELETE FROM product 
+WHERE oorsprong _nr = 14
