@@ -11,18 +11,21 @@ AND persoon_naam LIKE 'M'
 
 
 2 Geef de referenties en de namen van de personen, gesorteerd volgens het referentienummer van hoog naar laag. Gebruik bij het sorteren een nummer in plaats van een kolomnaam.
+
 SELECT persoon_id, persoon_naam
 FROM persoon
 ORDER BY  1?? DESC
 
 
 3 Geef de productcode en het productnummer van de producten waarbij een locatie is ingevuld.
+
 SELECT product_code, product_nr
 FROM product
 WHERE locatie_nr IS NOT NULL
 
 
 4 Geef de productcode en het productnummer van de producten met een productnummer tussen de 5 en 15 en de producten met een productnummer tussen de 30 en 50.
+
 SELECT product_code, product_nr
 FROM product
 WHERE product_nr BETWEEN 5 AND 15
@@ -30,12 +33,14 @@ OR product_nr BETWEEN 30 AND 50
 
 
 5 Geef de productcode en het productnummer van de producten met productnummer 5,10,20,25. Maak gebruik van IN.
+
 SELECT product_code, product_nr
 FRM product
 WHERE product_nr IN(5, 10, 15, 20, 25)
 
 
 6 Geef de naam en voornaam van de personen waarbij de laatste letter van de achternaam een 's' is en de eerste letter van de voornaam een 'f' of een 'p'.
+
 SELECT persoon_naam, persoon_voornaam
 FROM persoon
 WHERE RIGHT(UPPER(persoon_naam),1) = 'S'
