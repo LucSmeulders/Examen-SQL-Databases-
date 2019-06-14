@@ -102,7 +102,7 @@ AND locatie_naam LIKE '%Magazijn%'
 
 SELECT product_code, product_nr
 FROM product
-WHERE LEFT(UPPER(product_code),2) IN ('HA', 'NE')
+WHERE product_code IN ('HA', 'NE')
 AND product_nr < 15
 
     
